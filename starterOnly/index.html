@@ -57,8 +57,7 @@
           <span class="close" onclick="closeModal()"></span>
           <div class="modal-body">
             <form
-              name="reserve"
-              action="index.html"
+              name="reserve"             
               method="get"
               onsubmit="return validate();"
             >
@@ -110,7 +109,7 @@
               </div>
               <p class="text-label">Quelles villes ?</p>
               <div
-                class="formData">
+                class="formData" id="town">
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -199,14 +198,27 @@
                 </label>
                 <br>
               </div>
-              <input
+              <button class="btn-submit validate-btn">
+                C'est parti
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="launch-confirm">
+        <div class="content">
+          <span class="close" onclick="closeConfirm()"></span>
+           <div class="confirm-body">
+        <span>Merci d'avoir enregistrer votre participation</span>
+        <input
                 class="btn-submit"
                 type="submit"
                 class="button"
-                value="C'est parti"
+                value="Close"
+                id="confirm"
+                onclick="closeConfirm()";
               />
-            </form>
-          </div>
+            </div>
         </div>
       </div>
     </main>
@@ -218,3 +230,4 @@
     <script src="modal.js"></script>
   </body>
 </html>
+

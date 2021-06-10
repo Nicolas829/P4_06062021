@@ -169,6 +169,39 @@ main {
   background-color: rgba(26, 39, 156, 0.4);
 }
 
+.launch-confirm   {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(26, 39, 156, 0.4);
+  }
+
+.confirm-body {
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  
+  align-items:center;
+  height:500px;
+  padding-bottom:2em;
+  gap:6em;
+}
+.confirm-body span {
+ text-align: center;
+ width:40%;
+}
+
+#confirm {
+  display: flex;
+  justify-self:flex-end;
+  
+}
+
 .content {
   margin: 5% auto;
   width: 100%;
@@ -223,7 +256,7 @@ input {
 .formData[data-error-visible="true"]::after {
   opacity: 1;
 }
-.formData[data-error-visible="true"] .text-control {
+.formDataError .text-control {
   border: 2px solid #e54858;
 }
 /* 
@@ -526,4 +559,3 @@ footer {
     opacity: 1;
   }
 }
-
