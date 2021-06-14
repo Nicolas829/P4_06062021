@@ -17,6 +17,7 @@ const formData = document.querySelectorAll(".formData");
 const modalClose = document.querySelector(".close");
 const firstName = document.getElementById("first");
 const lastName = document.getElementById ("last");
+const birthdate = document.getElementById ("birthdate");
 const input = document.getElementsByName("form");
 const  p = document.createElement("p");
 const emailReg = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
@@ -25,15 +26,14 @@ const email = document.getElementById("email");
 const quantityReg = new RegExp(/[0-9]/);
 const quantity = document.getElementById("quantity");
 const btn= document.getElementsByClassName("btn-submit");
-const check = document.getElementsByClassName('checkbox-input');
-const town= document.getElementById("town");
-const location1=document.getElementById("location1");
-const location2=document.getElementById("location2");
-const location3=document.getElementById("location3");
-const location4=document.getElementById("location4");
-const location5=document.getElementById("location5");
-const location6=document.getElementById("location6");
+const checkTown = document.getElementsByName("location");
+const town = document.getElementById ("town");
 const confirmBg=document.querySelector(".launch-confirm");
+const checkBox=document.getElementById("checkbox1");
+const validateBtn=document.getElementById("btn-validate");
+
+
+
 
 
 // launch modal event
@@ -44,119 +44,106 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-// close modal
+// close  modal form
 function closeModal () {  
-  modalbg.style.display ="none";
- 
+  modalbg.style.display ="none"; 
 }
 
-// launch confirm 
+// launch page confirm 
 function launchConfirm () {
   confirmBg.style.display ="block";
 }
 
-//close confirm
-
+//close page confirm
 function closeConfirm () {
-  confirmBg.style.display ="none";
-  
+  confirmBg.style.display ="none";  
 }
 
+//fonction validation des input au moment du remplissage 
+function validate (nomclasse,regle, msg, distMargin) {
 
-firstName.addEventListener ('input', (e) => {
+nomclasse.addEventListener ('input', (e) => {
     
-  if (nameReg.test(e.target.value))  {
-    firstName.style.border="2px solid green"; 
+  if (regle.test(e.target.value) && nomclasse.value!="")  {
+    nomclasse.style.border="2px solid green"; 
     p.parentNode.removeChild(p);  }
    else {
-    firstName.style.border="2px solid #e54858";
-    firstName.insertAdjacentElement("afterend", p);
+    nomclasse.style.border="2px solid #e54858";
+    nomclasse.insertAdjacentElement("afterend", p);
     p.style.color="#e54858";
-    p.style.fontSize="0.6em";
-    p.innerHTML="Veuillez entrer 2 caractères ou plus pour le champ du Prénom.";
-    p.style.marginBottom="-2em";
+    p.style.fontSize="0.5em";
+    p.style.padding="0";
+    p.innerHTML=msg;
+    p.style.marginBottom= distMargin+ "em";
     
    }
-})      
+})  }
 
-lastName.addEventListener ('input', (e) => {
+validate (firstName, nameReg, "Veuillez entrer 2 caractères ou plus pour le champ du Prénom.","-3");
+validate (lastName, nameReg, "Veuillez entrer 2 caractères ou plus pour le champ du nom.","-3");
+validate (email, emailReg,"Merci d'enregistrer une adresse email valide" ,"-3");
+validate (quantity, quantityReg, "","0");
+
+
+//fonction validation des conditions pour envoyé le formulaire
+
+function validateNameForm (nomclasse, distMargin) {
+  if ( nomclasse.value == "" ) {
+  nomclasse.insertAdjacentElement("afterend", p);
+  p.style.color="#e54858";
+  p.style.fontSize="0.5em";
+  p.innerHTML="Le champ ne peut pas être vide";   
+  p.style.marginBottom=distMargin+ "em";
+  p.style.padding="0";
+  
+  return false;
+}
+}
+
+//fonction de validation pour choix de la ville
+function validateTown() {
+  
+  var formValid = false;
+
+  var i = 0;
+  while (!formValid && i < checkTown.length) {
+      if (checkTown[i].checked) formValid = true;
+      i++;        
+  }
+
+  if (!formValid) {
     
-  if (nameReg.test(e.target.value))  {
-    lastName.style.border="2px solid green"; 
-    p.parentNode.removeChild(p);
-    }
-   else {
-    lastName.style.border="2px solid #e54858";
-    lastName.insertAdjacentElement("afterend", p);
-    p.style.color="#e54858";
-    p.style.fontSize="0.6em";
-    p.innerHTML="Veuillez entrer 2 caractères ou plus pour le champ du nom.";   
-    p.style.marginBottom="-2em";
-    
-   }
-})      
+    town.insertAdjacentElement("beforeend", p);
+  p.innerHTML="Veuillez choisir une ville";
+  p.style.color="#e54858";
+  p.style.fontSize="0.5em";
+ };
+  return formValid;
+}
+// fonction validation des conditions d'utilisation
+function validateCheckbox () {
+  if (checkBox.checked==false)
+  {validateBtn.insertAdjacentElement("afterend", p);
+  p.style.color="#e54858";
+  p.style.fontSize="0.5em";
+  p.marginBottom="4em";
 
-email.addEventListener('input', (e) => {
+  p.innerHTML="Merci de lire et d'accepter les conditions d'utilisations"; 
+ return false; }
+}
+//fonction d'envoi du formulaire
+function validateForm () {
+  if (validateNameForm (firstName, -3)==false ||
+  validateNameForm (lastName, -3)==false ||
+  validateNameForm (email, -3)==false ||
+  validateNameForm (birthdate, -2)==false ||
+  validateNameForm (quantity, 0)==false ||
+  validateTown () == false  ||
+  validateCheckbox () ==false   ) 
+  {return false}  
+  
 
-  if (emailReg.test(e.target.value)) {
-    email.style.border="2px solid green"; 
-    p.parentNode.removeChild(p);
-  }
-  else {
-    email.style.border="2px solid #e54858";
-    email.insertAdjacentElement("afterend", p);
-    p.style.color="#e54858";
-    p.style.fontSize="0.6em";
-    p.innerHTML="Merci d'enregistrer une adresse email valide";   
-    p.style.marginBottom="-2em";
-  }
-})
-
-quantity.addEventListener ('input', (e) => {
-    
-  if (quantityReg.test(e.target.value))  {
-    quantity.style.border="2px solid green"; 
-    p.parentNode.removeChild(p);  }
-   
-})    
-
-
-
-function validate () {
-  if ( firstName.value == "" ) {
-    firstName.insertAdjacentElement("afterend", p);
-    p.style.color="#e54858";
-    p.style.fontSize="0.6em";
-    p.innerHTML="Le champ prénom ne peut pas être vide";   
-    p.style.marginBottom="-2em";
-    return false;
-  }
-  if ( lastName.value == "" ) {
-    lastName.insertAdjacentElement("afterend", p);
-    p.style.color="#e54858";
-    p.style.fontSize="0.6em";
-    p.innerHTML="Le champ nom ne peut pas être vide";   
-    p.style.marginBottom="-2em";
-    return false;
-  }
-  if ( email.value == "" ) {
-    email.insertAdjacentElement("afterend", p);
-    p.style.color="#e54858";
-    p.style.fontSize="0.6em";
-    p.innerHTML="Le champ email ne peut pas être vide";   
-    p.style.marginBottom="-2em";
-    return false;
-  }
-  if ( quantity.value == "" ) {
-    quantity.insertAdjacentElement("afterend", p);
-    p.style.color="#e54858";
-    p.style.fontSize="0.6em";
-    p.style.marginLeft="10em";
-    p.innerHTML="Merci de nous indiquer un nombre";   
-   
-    return false;
-  }
-  else {
+ else {
 closeModal();
 launchConfirm();
 return false;
@@ -165,4 +152,3 @@ return false;
 
 
 
-//"[a-zA-Z]{2,500}"
