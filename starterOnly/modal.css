@@ -6,12 +6,15 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  
   padding: 0;
 }
 /* Landing Page */
 
 body {
   margin: 0;
+  margin-left:auto;
+  margin-right:auto;
   display: flex;
   flex-direction: column;
   
@@ -518,8 +521,11 @@ footer {
     box-shadow: unset;
   }
   .hero-content {
+
     background: #fff;
     color: #000;
+    box-sizing: border-box;
+    padding:0;
     padding: 20px;
   }
   .hero-content::after {
@@ -551,6 +557,40 @@ footer {
   }
 }
 
+@media screen and (max-width: 540px) {
+
+  .topnav {
+    margin-top:2em;
+    overflow:visible;
+  }
+
+
+  .hero-content {
+    display:flex;
+    flex-direction: column;
+   box-sizing: border-box;  
+   width:80%;
+   
+   
+  }  
+ 
+  .hero-headline {
+    box-sizing: border-box;
+    width: 80%;
+    font-size: 4rem;
+    font-weight: normal;
+    white-space: wrap;
+  }
+  .hero-text {
+    width: 80%;
+    font-weight: normal;
+    margin-top: 57px;
+    padding: 0;
+  }
+  
+}
+  
+
 @keyframes modalopen {
   from {
     opacity: 0;
@@ -560,3 +600,4 @@ footer {
     opacity: 1;
   }
 }
+

@@ -26,14 +26,11 @@ const email = document.getElementById("email");
 const quantityReg = new RegExp(/[0-9]/);
 const quantity = document.getElementById("quantity");
 const btn= document.getElementsByClassName("btn-submit");
-const checkTown = document.getElementsByName("location");
+const checkTown = document.querySelectorAll("input[type='radio']");
 const town = document.getElementById ("town");
 const confirmBg=document.querySelector(".launch-confirm");
 const checkBox=document.getElementById("checkbox1");
 const validateBtn=document.getElementById("btn-validate");
-
-
-
 
 
 // launch modal event
@@ -98,42 +95,49 @@ function validateNameForm (nomclasse, distMargin) {
   
   return false;
 }
+
 }
 
 //fonction de validation pour choix de la ville
-function validateTown() {
+let tempDiv = document.createElement('div')
+
+function validateTown () {
   
-  var formValid = false;
-
-  var i = 0;
-  while (!formValid && i < checkTown.length) {
-      if (checkTown[i].checked) formValid = true;
-      i++;        
-  }
-
-  if (!formValid) {
+  for (let i=0; i<checkTown.length;i++) {
     
-    town.insertAdjacentElement("beforeend", p);
-  p.innerHTML="Veuillez choisir une ville";
-  p.style.color="#e54858";
-  p.style.fontSize="0.5em";
- };
-  return formValid;
+    if(checkTown[i].checked == true) {  
+      tempDiv.style.visibility="hidden";
+      console.log(checkTown[i].value);        
+   return true;  
+    }     
+  }
+  
+  checkBox.insertAdjacentElement("beforebegin", tempDiv);
+  tempDiv.innerHTML="Veuillez choisir une ville";
+  tempDiv.style.color="#e54858";
+  tempDiv.style.fontSize="0.5em";
+  
+  return false;
 }
+
+
 // fonction validation des conditions d'utilisation
 function validateCheckbox () {
   if (checkBox.checked==false)
-  {validateBtn.insertAdjacentElement("afterend", p);
+  {validateBtn.insertAdjacentElement("beforebegin", p);
   p.style.color="#e54858";
   p.style.fontSize="0.5em";
-  p.marginBottom="4em";
-
+  p.style.marginBottom="2em";
   p.innerHTML="Merci de lire et d'accepter les conditions d'utilisations"; 
  return false; }
+ 
+
 }
 //fonction d'envoi du formulaire
 function validateForm () {
-  if (validateNameForm (firstName, -3)==false ||
+ 
+  if (    
+  validateNameForm (firstName, -3)==false ||
   validateNameForm (lastName, -3)==false ||
   validateNameForm (email, -3)==false ||
   validateNameForm (birthdate, -2)==false ||
