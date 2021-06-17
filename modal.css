@@ -194,6 +194,8 @@ main {
   padding-bottom:2em;
   gap:9em;
 }
+
+
 .confirm-body span {
  text-align: center;
  display: flex;
@@ -586,6 +588,9 @@ footer {
     font-weight: normal;
     margin-top: 57px;
     padding: 0;
+  }
+  .confirm-body {
+    height:600px;
   }
   
 }
