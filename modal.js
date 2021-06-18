@@ -61,7 +61,7 @@ function validate (nomclasse,regle, msg, distMargin) {
 
 nomclasse.addEventListener ('input', (e) => {
     
-  if (regle.test(e.target.value) && nomclasse.value!="")  {
+  if (regle.test(e.target.value))  {
     nomclasse.style.border="2px solid green"; 
     p.parentNode.removeChild(p);  }
    else {
