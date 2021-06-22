@@ -82,6 +82,16 @@ validate (email, emailReg,"Merci d'enregistrer une adresse email valide" ,"-3");
 validate (quantity, quantityReg, "","0");
 
 
+// pour bordure birthdate  en vert quand champ rempli
+
+birthdate.addEventListener ('input', (e) => {
+    
+  if (birthdate!=="")  {
+    birthdate.style.border="2px solid green"; 
+    p.parentNode.removeChild(p);  }
+  
+})  
+
 //fonction validation des conditions pour envoyé le formulaire
 
 function validateNameForm (nomclasse, distMargin) {
@@ -130,7 +140,9 @@ function validateCheckbox () {
   p.style.marginBottom="2em";
   p.innerHTML="Merci de lire et d'accepter les conditions d'utilisations"; 
  return false; }
- 
+ else {checkBox.style.border="2px solid green"; 
+ p.parentNode.removeChild(p); 
+ }
 
 }
 //fonction d'envoi du formulaire
