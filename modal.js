@@ -20,10 +20,7 @@ const lastName = document.getElementById ("last");
 const birthdate = document.getElementById ("birthdate");
 const input = document.getElementsByName("form");
 const  p = document.createElement("p");
-const emailReg = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
-const nameReg = new RegExp(/[a-zA-Z]{2,10}/);
 const email = document.getElementById("email");
-const quantityReg = new RegExp(/[0-9]/);
 const quantity = document.getElementById("quantity");
 const btn= document.getElementsByClassName("btn-submit");
 const checkTown = document.querySelectorAll("input[type='radio']");
@@ -31,7 +28,10 @@ const town = document.getElementById ("town");
 const confirmBg=document.querySelector(".launch-confirm");
 const checkBox=document.getElementById("checkbox1");
 const validateBtn=document.getElementById("btn-validate");
-
+// REGEX 
+const quantityReg = new RegExp(/[0-9]/);
+const emailReg = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
+const nameReg = new RegExp(/[a-zA-Z]{2,10}/);
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -97,6 +97,8 @@ function validateNameForm (nomclasse, distMargin) {
 }
 
 }
+
+
 birthdate.addEventListener ('input', (e) => {
     
   if (birthdate!=="")  {
@@ -104,6 +106,7 @@ birthdate.addEventListener ('input', (e) => {
     p.parentNode.removeChild(p);  }
   
 })  
+
 
 //fonction de validation pour choix de la ville
 let tempDiv = document.createElement('div')
