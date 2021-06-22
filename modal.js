@@ -138,9 +138,7 @@ function validateCheckbox () {
   p.innerHTML="Merci de lire et d'accepter les conditions d'utilisations"; 
  return false; }
  
- else {
-  p.parentNode.removeChild(p);
- }
+ 
 
 }
 //fonction d'envoi du formulaire
