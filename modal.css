@@ -65,6 +65,7 @@ p {
 
 .topnav .icon {
   display: none;
+ 
 }
 
 @media screen and (max-width: 800px) {
@@ -72,9 +73,9 @@ p {
   .topnav a.icon {
     float: right;
     display: block;
-  }
+    color:#ff0000;
 }
-
+}
 @media screen and (max-width: 800px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
@@ -100,6 +101,7 @@ p {
     float: right;
     display: block;
     margin-top:5px;
+    color:#ff0000;
   }
   .main-navbar {}
 } 
